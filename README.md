@@ -94,10 +94,6 @@ The authorizer is implemented as a
 option specifies a location of a configuration file. The repo contains an
 [example configuration](https://github.com/jelson/nginx-googlesignin/blob/main/conf/googleauth-config-example.yaml). It needs:
 
-* The Google Auth python module:
-
-  `apt install python3-google-auth`
-
 * The port number on which to listen. The default is 17000; if you change it,
   make sure to also change the proxy_pass directive in
   `nginx-provides-auth-snippet.conf`.
@@ -111,9 +107,15 @@ option specifies a location of a configuration file. The repo contains an
 
 * A list of email addresses that are allowed
 
-Place the config file somewhere accessible. In my example, it's in `~/.config/nginx-googleauth/config.yaml`.
+To run the authorizer:
 
-Arrange to have the auth program run, e.g, by adding it to systemd using a
+* Install the Google Auth python module:
+
+  `apt install python3-google-auth`
+
+* Place the config file somewhere accessible. In my example, it's in `~/.config/nginx-googleauth/config.yaml`.
+
+* Arrange to have the auth program run, e.g, by adding it to systemd using a
 configuration file such as [this
 one](https://github.com/jelson/nginx-googlesignin/blob/main/conf/googleauth.service). Ensure
 that you pass `--config /path/to/config.yaml` to the script, giving it the
